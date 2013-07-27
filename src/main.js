@@ -24,3 +24,5 @@
 // ==/UserScript==
 
 window.stop();
+
+require('hello.js');
