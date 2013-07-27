@@ -12,8 +12,23 @@ class Builder {
 	
 	public function start() {
 		debug_print('build starting ..');
-		// @todo do something
+		$content = $this->parseJavascript(MAIN_FILE);
+		file_put_contents(OUTPUT_FILE, $content);
 		debug_print('build completed');
+	}
+	
+	public function parseJavascript($file) {
+		
+		debug_print('parseJavascript '.$file);
+		
+		if (is_file($file) == false) {
+			debug_print('WARNING', 'File not found');
+			return '';
+		}
+		
+		$content = file_get_contents($file);
+		
+		return $content;
 	}
 }
 
