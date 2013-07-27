@@ -27,5 +27,11 @@
 var content = require('template.html');
 document.body.innerHTML = content;
 
+// add stylesheet
+var style = document.createElement('style');
+style.textContent = require('style.css');
+var head = document.getElementsByTagName('head');
+head[0].appendChild(style);
+
 // some javascript code
 require('hello.js');

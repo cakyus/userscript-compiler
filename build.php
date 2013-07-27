@@ -41,7 +41,6 @@ class Builder {
 			);
 	}
 	
-	
 	public function parseRequire($match) {
 		
 		$file = $match[1];
@@ -55,7 +54,7 @@ class Builder {
 		debug_print('parseRequire', $path);
 		
 		if (is_file($path) == false) {
-			debug_print('File not found', $path);
+			debug_print('WARNING', 'file not found', $path);
 			return '';
 		}
 		
@@ -75,10 +74,16 @@ class Builder {
 			}
 		} elseif ($extension == 'html') {
 			return $this->parseHTML($content);
+		} elseif ($extension == 'css') {
+			return $this->parseHTML($content);
 		} else {
-			debug_print('unknown extension.', $extension);
+			debug_print('WARNING', 'unknown extension.', $extension);
 			return '';
 		}
+	}
+	
+	public function parseStylesheet($content) {
+		return $this->parseText($content);
 	}
 	
 	public function parseHTML($content) {
@@ -86,7 +91,7 @@ class Builder {
 	}
 	
 	public function parseText($content) {
-		return "'".preg_replace("/\n/", "'\n+'", $content)."';\n";
+		return "'".preg_replace("/\n/", "'\n+'", $content)."';";
 	}
 	
 }
