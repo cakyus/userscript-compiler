@@ -22,7 +22,8 @@ Assign content of file into a variable
     var style = require('style.css');
     var data = require('Octopus.jpg');
 
-See src/main.js for complete example
+See [src/main.js] (https://github.com/cakyus/userscript-compiler/blob/master/src/main.js)
+for complete example
 
 Requirements
 ------------
