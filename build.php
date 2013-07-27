@@ -76,6 +76,8 @@ class Builder {
 			return $this->parseHTML($content);
 		} elseif ($extension == 'css') {
 			return $this->parseHTML($content);
+		} elseif (in_array($extension, array('jpg','png'))) {
+			return $this->parseData('image/'.$extension,$content);
 		} else {
 			debug_print('WARNING', 'unknown extension.', $extension);
 			return '';
@@ -94,6 +96,20 @@ class Builder {
 		return "'".preg_replace("/\n/", "'\n+'", $content)."';";
 	}
 	
+	/**
+	 * Data URI Scheme
+	 * @see https://en.wikipedia.org/wiki/Data_URI_scheme
+	 **/
+	
+	public function parseData($contentType,$content) {
+		
+		preg_match_all("/.{0,72}/s", base64_encode($content), $match);
+		$content = implode("\n", $match[0]);
+		
+		return "'data:$contentType;base64,'\n+"
+			.$this->parseText($content)
+			;
+	}
 }
 
 

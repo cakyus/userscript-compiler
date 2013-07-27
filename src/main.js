@@ -33,5 +33,10 @@ style.textContent = require('style.css');
 var head = document.getElementsByTagName('head');
 head[0].appendChild(style);
 
+// handle image
+var data = require('Octocat.jpg');
+var image = document.getElementById('Octocat');
+image.src = data;
+
 // some javascript code
 require('hello.js');
