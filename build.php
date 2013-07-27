@@ -14,7 +14,7 @@ class Builder {
 	public function start() {
 		debug_print('build starting ..');
 		$content = $this->requireJavascript(MAIN_FILE);
-		debug_print('Write output file', OUTPUT_FILE);
+		debug_print('write output file', OUTPUT_FILE);
 		file_put_contents(OUTPUT_FILE, $content);
 		debug_print('build completed');
 	}
@@ -63,6 +63,7 @@ class Builder {
 		
 		if (empty($extension)) {
 			// assume this is string
+			return $this->parseText($content);
 		} elseif ($extension == 'js') {
 			if (BUILD_MINI) {
 				return $this->parseJavascript($content);
@@ -72,11 +73,22 @@ class Builder {
 					."\n// $file -->\n"
 					;
 			}
+		} elseif ($extension == 'html') {
+			return $this->parseHTML($content);
 		} else {
-			debug_print('Unknown file extension', $extension);
+			debug_print('unknown extension.', $extension);
 			return '';
 		}
 	}
+	
+	public function parseHTML($content) {
+		return $this->parseText($content);
+	}
+	
+	public function parseText($content) {
+		return "'".preg_replace("/\n/", "'\n+'", $content)."';\n";
+	}
+	
 }
 
 

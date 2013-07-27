@@ -19,10 +19,13 @@
 // @id             5fcd7c57-a60d-4a61-b9d6-4e35ce055ad8
 // @name           Userscript Compiler
 // @include        http://127.0.0.1/p/userscript-compiler/
-// @run-at         document-start
+// @run-at         document-end
 // @version        0.0.1
 // ==/UserScript==
 
-window.stop();
+// write the template
+var content = require('template.html');
+document.body.innerHTML = content;
 
+// some javascript code
 require('hello.js');
