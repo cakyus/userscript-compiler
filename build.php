@@ -1,5 +1,11 @@
 <?php
 
+define('PROJECT_DIR', __DIR__);
+define('SOURCE_DIR', PROJECT_DIR.'/src');
+define('OUTPUT_DIR', PROJECT_DIR.'/build');
+define('MAIN_FILE', SOURCE_DIR.'/main.js');
+define('OUTPUT_FILE', OUTPUT_DIR.'/build.user.js');
+
 // -- CODE --
 
 class Builder {
