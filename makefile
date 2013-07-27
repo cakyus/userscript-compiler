@@ -1,0 +1,2 @@
+all:
+	php build.php
