@@ -1,6 +1,6 @@
 <?php
 
-define('PROJECT_DIR', __DIR__);
+define('PROJECT_DIR', getcwd());
 define('SOURCE_DIR', PROJECT_DIR.'/src');
 define('OUTPUT_DIR', PROJECT_DIR.'/build');
 define('MAIN_FILE', SOURCE_DIR.'/main.js');
@@ -112,17 +112,11 @@ class Builder {
 	}
 }
 
-
-// -- MAIN --
-
 function debug_print() {
 	echo date("H:i:s ");
 	echo implode(" ", func_get_args());
 	echo "\n";
 }
 
-$debug = debug_backtrace();
-if (empty($debug)) {
-	$builder = new Builder;
-	$builder->start();
-}
+$builder = new Builder;
+$builder->start();
